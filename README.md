@@ -12,9 +12,19 @@
 
   **读书笔记**：
 
-  - 1. [简介](./java_conccurency_practice/docs/1.简介.md)
-    2. 线程的安全性
-    3. 对象的共享
+  [0.本书章节概述](./java_conccurency_practice/docs/本书章节内容概述.md)
+
+  [1.简介](./java_conccurency_practice/docs/1.简介.md)
+
+  ![2. 线程安全性](/Users/xuyanxin/Desktop/2. 线程安全性.png)
+
+  [2.线程的安全性](./java_conccurency_practice/docs/2.线程的安全性.md)
+
+  ![3.对象共享](/Users/xuyanxin/Desktop/3.对象共享.png)
+
+  [3.对象的组合](./java_conccurency_practice/docs/3.对象的共享.md)
+
+  对象的共享
 
 - 《Java 核心技术》第十版
 
