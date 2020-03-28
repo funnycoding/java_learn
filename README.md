@@ -16,15 +16,15 @@
 
   [1.简介](./java_conccurency_practice/docs/1.简介.md)
 
-  ![2. 线程安全性](/Users/xuyanxin/Desktop/2. 线程安全性.png)
+  ![2. 线程安全性](https://xuyanxin-blog-bucket.oss-cn-beijing.aliyuncs.com/blog/20200328153119.png)
 
   [2.线程的安全性](./java_conccurency_practice/docs/2.线程的安全性.md)
 
-  ![3.对象共享](/Users/xuyanxin/Desktop/3.对象共享.png)
+  ![3.对象共享](https://xuyanxin-blog-bucket.oss-cn-beijing.aliyuncs.com/blog/20200328153129.png)
 
-  [3.对象的组合](./java_conccurency_practice/docs/3.对象的共享.md)
+  [3.对象的共享](./java_conccurency_practice/docs/3.对象的共享.md)
 
-  对象的共享
+  [4.对象的组合]()
 
 - 《Java 核心技术》第十版
 
