@@ -20,9 +20,7 @@
 
   [3.对象的共享](./java_conccurency_practice/docs/3.对象的共享.md)
 
-  [4.对象的组合]()
-
-  - [脑图](https://github.com/funnycoding/javaconcurrency/tree/master/java_conccurency_practice/mindmaps)
+  [4.对象的组合](./java_conccurency_practice/docs/4.对象的组合.md) 
 
 - 《Java 核心技术》第十版
 
