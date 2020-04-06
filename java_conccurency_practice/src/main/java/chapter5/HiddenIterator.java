@@ -3,6 +3,8 @@ package chapter5;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import net.jcip.annotations.GuardedBy;
 
 /**
@@ -26,7 +28,7 @@ public class HiddenIterator {
 
     public void addTenThings() {
         Random random = new Random();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1000; i++) {
             add(random.nextInt());
         }
         // 在这里打印集合将迭代集合中的每个元素，并对每个元素调用 toString() 方法
@@ -35,6 +37,10 @@ public class HiddenIterator {
 
     public static void main(String[] args) {
         HiddenIterator hi = new HiddenIterator();
-        hi.addTenThings();
+        ExecutorService executorService = Executors.newFixedThreadPool(6);
+        executorService.execute(() -> hi.addTenThings());
+        executorService.execute(() -> hi.addTenThings());
+        executorService.execute(() -> hi.addTenThings());
+        executorService.execute(() -> hi.addTenThings());
     }
 }
