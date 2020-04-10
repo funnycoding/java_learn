@@ -1,5 +1,7 @@
 package chapter2;
 
+import java.util.HashSet;
+import java.util.Set;
 import net.jcip.annotations.NotThreadSafe;
 
 /**
@@ -25,6 +27,11 @@ public class LazyInitRace {
             instance = new ExpensiveObject();
         }
         return instance;
+    }
+
+    public static void main(String[] args) {
+        Set<Object> objects = new HashSet<>();
+        objects.add(1111);
     }
 }
 
