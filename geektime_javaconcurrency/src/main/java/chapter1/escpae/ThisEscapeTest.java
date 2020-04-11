@@ -16,6 +16,6 @@ public class ThisEscapeTest {
         ListenerRunnable listenerRunnable = new ListenerRunnable(source);
         Thread thread = new Thread(listenerRunnable);
         thread.start();
-        ThisEscape thisEscape = new ThisEscape(source);
+        SafeConstruct thisEscape = SafeConstruct.getInstance(source);
     }
 }

@@ -1,6 +1,5 @@
 package chapter1.escpae;
 
-
 /**
  * @author XuYanXin
  * @program javaconcurrency_learn
@@ -8,6 +7,9 @@ package chapter1.escpae;
  * @date 2020/4/10 12:12 下午
  */
 
+/**
+ * this 隐式逸出的发生地
+ */
 public class ThisEscape {
     public final int id;
     public final String name;
@@ -28,6 +30,4 @@ public class ThisEscape {
         }
         name = "Ahri";
     }
-
-
 }

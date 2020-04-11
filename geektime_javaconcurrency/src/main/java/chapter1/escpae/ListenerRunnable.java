@@ -16,7 +16,6 @@ public class ListenerRunnable implements Runnable {
         this.source = source;
     }
 
-
     @Override
     public void run() {
         List<EventListener> listeners = null;

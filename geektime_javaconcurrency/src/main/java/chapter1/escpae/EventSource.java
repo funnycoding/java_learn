@@ -13,7 +13,6 @@ import java.util.List;
 public class EventSource<T> {
     private final List<T> eventListeners;
 
-
     public EventSource() {
         eventListeners = new ArrayList<>();
     }
@@ -39,6 +38,4 @@ public class EventSource<T> {
         dest.addAll(eventListeners);
         return dest;
     }
-
-
 }
