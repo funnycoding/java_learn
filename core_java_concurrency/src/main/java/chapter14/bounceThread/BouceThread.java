@@ -19,7 +19,7 @@ public class BouceThread {
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             JFrame frame = new BounceFrame();
-            frame.setTitle("多线程弹弹球！");
+            frame.setTitle("这是一个「多线程」弹弹球！");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
         });
@@ -64,7 +64,7 @@ class BounceFrame extends JFrame {
     /**
      * Adds a bouncing ball to the canvas and starts a thread to make it bounce
      *
-     * 天加一个小球到画布中并且使用独立的线程渲染它
+     * 添加一个小球到画布中并且使用独立的线程渲染它
      */
     public void addBall() {
         Ball ball = new Ball();
@@ -79,7 +79,6 @@ class BounceFrame extends JFrame {
                 for (int i = 0; i < STEPS; i++) {
                     ball.move(comp.getBounds());
                     comp.repaint();
-                    Thread.currentThread().interrupt();
                     Thread.sleep(DELAY);
 
                 }

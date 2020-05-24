@@ -19,9 +19,11 @@ import javax.swing.JPanel;
 public class Bounce {
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            System.out.println();
+            System.out.println("弹跳球 死大头！");
             JFrame frame = new BounceFrame();
+            // 设置一个默认的
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
             frame.setVisible(true);
         });
     }
@@ -36,7 +38,7 @@ class BounceFrame extends JFrame {
     public static final int DELAY = 3;
 
     public BounceFrame() {
-        setTitle("BounceFrame的名字！");
+        setTitle("单线程的弹弹球！");
         comp = new BallCompoent();
         add(comp, BorderLayout.CENTER);
         JPanel buttonPanel = new JPanel();

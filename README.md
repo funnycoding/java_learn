@@ -1,35 +1,26 @@
 
-
-![](https://xuyanxin-blog-bucket.oss-cn-beijing.aliyuncs.com/blog/20200328152224.png)
-
 ## Java 并发学习仓库
 
-### 学习资料：
-
-#### 书籍与成体系的公开课：
+### 使用到的相关学习资料：
 
 - 《Java 并发编程实战》
+- 极客时间课程 —— Java 并发编程实战
+- 《Java编程思想——并发章节》
+- 《Java 核心技术 —— 并发章节》
+- 并发中文网资料
 
-  - **读书笔记**：
+#### 读书笔记 ↓
 
-  [0.本书章节概述](./java_conccurency_practice/docs/本书章节内容概述.md)
+**《Java 并发编程实战》**：
 
-  [1.简介](./java_conccurency_practice/docs/1.简介.md)
+[0.本书章节概述](http://www.firefang.tech/post/6f7a7eaa.html)
 
-  [2.线程的安全性](./java_conccurency_practice/docs/2.线程的安全性.md)
-
-  [3.对象的共享](./java_conccurency_practice/docs/3.对象的共享.md)
-
-  [4.对象的组合](./java_conccurency_practice/docs/4.对象的组合.md)  [脑图（知识架构总结）](./java_conccurency_practice/mindmaps/4.对象的组合.png)
+这里面有整本书的已经完成的读书笔记各个章节的跳转链接和我的一些个人总结，相当于一个总的导航。
 
 - 《Java 核心技术》第十版
-
 - 《Java 编程思想》第4版
-
 - 《深入理解Java虚拟机》第三版
-
 - 极客时间 — 《Java并发编程实战》
-
 - 极客时间 — 《Java核心技术面试精讲》
 
 #### 网上的博客：

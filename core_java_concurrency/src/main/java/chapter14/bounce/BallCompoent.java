@@ -16,8 +16,10 @@ import javax.swing.JPanel;
 
 // 保存小球的容器，程序中可以同时存在多个小球
 public class BallCompoent extends JPanel {
+    // 小球画布的宽高
     private static final int DEFAULT_WIDTH = 450;
     private static final int DEFAULT_HEIGHT = 350;
+
     private List<Ball> balls = new ArrayList<>();
 
     /**
@@ -40,6 +42,9 @@ public class BallCompoent extends JPanel {
             g2.fill(b.getShape());
         }
     }
+
     // 给窗口提供一个初始大小
-    public Dimension getPreferredSize() { return new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT); }
+    public Dimension getPreferredSize() {
+        return new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+    }
 }
