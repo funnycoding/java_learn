@@ -29,14 +29,21 @@ public class MonitorVehicleTracker {
     }
 
     /**
-     * 根据 车辆的ID 获取 车辆当前的位置信息
+     * 返回当前所有车辆信息的快照
+     * @return
+     */
+    public synchronized Map<String,MutablePoint> getLocations() {
+        return deepCopy(locations);
+    }
+
+    /**
+     * 返回车辆快照信息
      *
      * @param id
      * @return
      */
     public synchronized MutablePoint getLocation(String id) {
         MutablePoint location = locations.get(id);
-        //todo  这里为啥要重新构造 MutablePoint 对象而不是直接返回？
         return location == null ? null : new MutablePoint(location);
     }
 

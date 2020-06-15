@@ -33,11 +33,14 @@ public class DelegatingVehicleTracker {
         if (locations.replace(id, new Point(x, y)) == null) {
             throw new IllegalArgumentException("invalid vehicle name: " + id);
         }
+        //System.out.println(unmodifiableMap);
+        //System.out.println("Locations's Point HashCode: " + locations.get("Car1").toString());
+        //System.out.println("unmodifiableMap's Point HashCode: " + unmodifiableMap.get("Car1").toString());
     }
 
     // Alternate version of getLocations (Listing 4.8)
-    // 另一种获取车辆位置的方法 , 将当前的locations 复制到一个 HashMap 中
-    public Map<String, Point> getLocationsAsStatoc() {
+    // 返回 locations 的静态拷贝而非实时拷贝
+    public Map<String, Point> getLocationsAsStatic() {
         return Collections.unmodifiableMap(new HashMap<>(locations));
     }
 }
