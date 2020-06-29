@@ -8,9 +8,10 @@ package chapter4;
  */
 
 public class DebugTest {
-    public static void main(String[] args) {
-        System.out.println("666");
-        System.out.println("666");
-        System.out.println("666");
-    }
+    //public static void main(String[] args) {
+    //    for (int i = 0; i <; i++) {
+    //
+    //    }
+    //    while (true)
+    //}
 }
