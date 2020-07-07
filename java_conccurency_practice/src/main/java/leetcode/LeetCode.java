@@ -1,5 +1,9 @@
 package leetcode;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -26,12 +30,18 @@ public class LeetCode {
         //int n = 3;
         //merge(nums1, m, nums2, n);
 
-        String chara = "ababac";
-        countCharacters(null, chara);
+        //1160
+      /*  String chara = "ababac";
+        countCharacters(null, chara);*/
+        // 1491
+        int[] salary = {48000, 59000, 99000, 13000, 78000, 45000, 31000, 17000, 39000, 37000, 93000,
+                77000, 33000, 28000, 4000, 54000, 67000, 6000, 1000, 11000};
+        average(salary);
     }
 
-    // 674
+    // 674-最长连续递增序列
     public static int findLengthOfLCIS(int[] nums) {
+        // 边界判定
         if (nums.length == 0 || nums == null) {
             return 0;
         }
@@ -145,5 +155,29 @@ public class LeetCode {
             }
         }
         return length;
+    }
+
+    /**
+     * 1491. 去掉最低工资和最高工资后的平均值
+     * 关键点：
+     * 1： 【3 <= salary.length <= 100】 -》 数组长度
+     * 2：【10^3 <= salary[i] <= 10^6】 元素大小
+     * 3： 元素唯一
+     * 4：误差值小于 【10 ^ -5】
+     * 思路：
+     * 一个存最大值，一个存最小值
+     *
+     * @param salary
+     * @return
+     */
+    public static double average(int[] salary) {
+        double ans=0;
+        int len=salary.length;
+
+        Arrays.sort(salary);
+        for(int i=1;i<len-1;i++){
+            ans+=salary[i];
+        }
+        return ans/(len-2);
     }
 }
