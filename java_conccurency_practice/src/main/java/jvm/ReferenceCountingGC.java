@@ -18,7 +18,7 @@ public class ReferenceCountingGC {
         ReferenceCountingGC objA = new ReferenceCountingGC();
         ReferenceCountingGC objB = new ReferenceCountingGC();
 
-        // 循环引用
+        // 循环引用 试试
         objA.instance = objB;
         objB.instance = objA;
 
