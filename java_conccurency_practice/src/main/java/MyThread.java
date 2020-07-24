@@ -8,6 +8,6 @@
 public class MyThread implements Runnable{
     @Override
     public void run() {
-        System.out.println("子线程："+Thread.currentThread().getName());
+        System.out.println("MyThread 类 实现了 Runnable 接口的 Run 方法中的输出");
     }
 }

@@ -5,7 +5,7 @@ import java.lang.management.ThreadMXBean;
 /**
  * @author XuYanXin
  * @program javaconcurrency_learn
- * @description
+ * @description 查询单启动一个主线程时最少有几个线程
  * @date 2020/7/22 8:42 下午
  */
 
