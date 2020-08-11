@@ -1,8 +1,5 @@
 package leetcode;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -14,30 +11,6 @@ import java.util.HashMap;
  */
 
 public class LeetCode {
-    public static void main(String[] args) {
-        //int[] i = {1, 3, 5, 4, 2, 3, 4, 5};
-        //System.out.println(findLengthOfLCIS(i));
-
-        //int[] i = {0,1,1,1,2,3};
-        //int[] i = {1, 1, 2};
-        //System.out.println(removeDuplicates(i));
-        //System.out.println(Arrays.toString(i));
-
-        //88
-        //int[] nums1 = {1, 2, 3, 0, 0, 0};
-        //int[] nums2 = {2, 5, 6};
-        //int m = 3;
-        //int n = 3;
-        //merge(nums1, m, nums2, n);
-
-        //1160
-      /*  String chara = "ababac";
-        countCharacters(null, chara);*/
-        // 1491
-        int[] salary = {48000, 59000, 99000, 13000, 78000, 45000, 31000, 17000, 39000, 37000, 93000,
-                77000, 33000, 28000, 4000, 54000, 67000, 6000, 1000, 11000};
-        average(salary);
-    }
 
     // 674-最长连续递增序列
     public static int findLengthOfLCIS(int[] nums) {
@@ -171,13 +144,116 @@ public class LeetCode {
      * @return
      */
     public static double average(int[] salary) {
-        double ans=0;
-        int len=salary.length;
+        double ans = 0;
+        int len = salary.length;
 
         Arrays.sort(salary);
-        for(int i=1;i<len-1;i++){
-            ans+=salary[i];
+        for (int i = 1; i < len - 1; i++) {
+            ans += salary[i];
         }
-        return ans/(len-2);
+        return ans / (len - 2);
     }
+
+    /**
+     * 287 移动零 <br/>
+     * 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
+     *
+     * 示例:
+     * 输入: [0,1,0,3,12]
+     * 输出: [1,3,12,0,0]
+     * ------------------
+     * 说明:
+     * 必须在原数组上操作，不能拷贝额外的数组。
+     * 尽量减少操作次数。
+     * ------------------
+     * 思路：
+     * 遍历一次数组，对元素进行判断 如果该元素是0，则将其余元素 index+1 ，将该元素置为数组尾部
+     *
+     * 疑问：
+     * 1. 需要继续明确条件，该数组本身是否是有序的？
+     *
+     * 2. 对数组进行索引的移动是否很消耗性能
+     * -------------------
+     * 边界条件：如果数组传入是空？
+     *
+     * @param nums 目标数组
+     */
+    public static void moveZeroes(int[] nums) {
+        // 边界条件判断，如果数组为空，直接返回
+        if (nums.length == 0) {
+            return;
+        }
+        int k = 0;
+        for (int i = 0; i < nums.length-1; i++) {
+            // 如果元素是0，则将该元素
+            if (nums[i] == 0) {
+                // 如果下个元素不是0，则正常处理
+                if (nums[i + 1] != 0) {
+                    // 核心操作：将其余元素向前移一位，将该元素放置到末尾
+                    for (int j = i; j < nums.length - 1; j++) {
+                        nums[j] = nums[j+1];
+                    }
+                    // 最后一位赋值为0
+                    nums[nums.length - 1] = 0;
+                } else {
+                    int zeroElementNums = 0;
+                    // 从这开始循环 找出下一个非0元素的值，
+                    for (int j = i+1; j <nums.length ; j++) {
+                        while (nums[j] == 0 && j<= nums.length-1) {
+                            zeroElementNums ++;
+                            j++;
+                        }
+                    }
+                    System.out.println(zeroElementNums);
+
+                    // 连续移动3个元素
+                    for (int j = i; j <nums.length ; j++) {
+                        nums[j] = nums[j + zeroElementNums];
+                        if (j + zeroElementNums >= nums.length - 1) {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    /**
+     * 测试函数
+     * @param args
+     */
+    public static void main(String[] args) {
+        //int[] i = {1, 3, 5, 4, 2, 3, 4, 5};
+        //System.out.println(findLengthOfLCIS(i));
+
+        //int[] i = {0,1,1,1,2,3};
+        //int[] i = {1, 1, 2};
+        //System.out.println(removeDuplicates(i));
+        //System.out.println(Arrays.toString(i));
+
+        //88
+        //int[] nums1 = {1, 2, 3, 0, 0, 0};
+        //int[] nums2 = {2, 5, 6};
+        //int m = 3;
+        //int n = 3;
+        //merge(nums1, m, nums2, n);
+
+        //1160
+      /*  String chara = "ababac";
+        countCharacters(null, chara);*/
+        // 1491
+        int[] salary = {48000, 59000, 99000, 13000, 78000, 45000, 31000, 17000, 39000, 37000, 93000,
+                77000, 33000, 28000, 4000, 54000, 67000, 6000, 1000, 11000};
+        average(salary);
+
+
+        // 283
+        //int[] test283 = {0, 1, 0, 3, 12};
+        int[] test283 = {1,0, 0,0,0,1};
+        moveZeroes(test283);
+        System.out.println(Arrays.toString(test283));
+
+    }
+
 }
