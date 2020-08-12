@@ -180,47 +180,74 @@ public class LeetCode {
      */
     public static void moveZeroes(int[] nums) {
         // 边界条件判断，如果数组为空，直接返回
-        if (nums.length == 0) {
+        if (nums == null || nums.length == 0) {
             return;
         }
-        int k = 0;
-        for (int i = 0; i < nums.length-1; i++) {
-            // 如果元素是0，则将该元素
+        for (int i = 0; i < nums.length - 1; i++) {
+            // 如果元素是0，则进入判断条件，找到该元素之后第一个非0的元素，将当前索引元素与非0元素交换
             if (nums[i] == 0) {
-                // 如果下个元素不是0，则正常处理
+                // 如果下个元素不是0，则正常处理 直接交换就行了，将最后一位赋值为0
                 if (nums[i + 1] != 0) {
-                    // 核心操作：将其余元素向前移一位，将该元素放置到末尾
+                    // 核心操作：将该元素之后的元素向左移一位，将末尾元素置为0
                     for (int j = i; j < nums.length - 1; j++) {
-                        nums[j] = nums[j+1];
+                        nums[j] = nums[j + 1];
                     }
-                    // 最后一位赋值为0
                     nums[nums.length - 1] = 0;
                 } else {
-                    int zeroElementNums = 0;
+                    // 如果下个元素还是0，则开始判断到下个非0元素之间的元素数量
+                    int zeroElementNums = 1; // 元素为0的数量
                     // 从这开始循环 找出下一个非0元素的值，
-                    for (int j = i+1; j <nums.length ; j++) {
-                        while (nums[j] == 0 && j<= nums.length-1) {
-                            zeroElementNums ++;
-                            j++;
+                    for (int j = i + 1; j < nums.length-1; j++) {
+                        if (j <= nums.length - 1 && nums[j] == 0) {
+                            zeroElementNums++;
+                        }else {
+                            // 注意，这里需要跳出的是外层循环，否则会继续 for 循环，程序出错
+                            break ;
                         }
                     }
-                    System.out.println(zeroElementNums);
-
-                    // 连续移动3个元素
-                    for (int j = i; j <nums.length ; j++) {
-                        nums[j] = nums[j + zeroElementNums];
-                        if (j + zeroElementNums >= nums.length - 1) {
-                            break;
+                    if (i + zeroElementNums  <= nums.length - 1) {
+                        int noneZeroElementIndex = i + zeroElementNums ;
+                        // 将第一个非0元素赋值给当前为0的元素
+                        nums[i] = nums[noneZeroElementIndex];
+                        nums[noneZeroElementIndex] = 0;
+                        // 将第一个非0元素之后的元素向前移动一位
+                        for (int j = noneZeroElementIndex; j < nums.length - 1; j++) {
+                            nums[j] = nums[j + 1];
                         }
+                        // 末尾置为0
+                        nums[nums.length - 1] = 0;
                     }
                 }
             }
         }
     }
 
+    /**
+     *  287 移动零 <br/>
+     *  优秀解
+     *
+     * @param nums
+     */
+    public static void moveZeroes2(int[] nums) {
+        // 边界排除
+        if (nums == null || nums.length <= 1) {
+            return;
+        }
+        int idx = 0;
+        for (int num : nums) {
+            if (num != 0) {
+                nums[idx++] = num;
+            }
+        }
+        while (idx < nums.length) {
+            nums[idx++] = 0;
+        }
+    }
+
 
     /**
      * 测试函数
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -247,13 +274,22 @@ public class LeetCode {
                 77000, 33000, 28000, 4000, 54000, 67000, 6000, 1000, 11000};
         average(salary);
 
-
         // 283
         //int[] test283 = {0, 1, 0, 3, 12};
-        int[] test283 = {1,0, 0,0,0,1};
-        moveZeroes(test283);
-        System.out.println(Arrays.toString(test283));
+        int[] test284 = {-370741595,
+                0,
+                0,
+                -2109519986,
+                0,
+                0,
+                -70546121,
+                -122624749,
+                -1199903092};
+        int[] test283 = {0, 1, 0, 3, 12};
 
+        moveZeroes(test283);
+        //moveZeroes2(test283);
+        System.out.println(Arrays.toString(test283));
     }
 
 }
