@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
+import sun.util.resources.cldr.uk.CurrencyNames_uk;
 
 /**
  * @author XuYanXin
@@ -296,6 +297,34 @@ public class LeetCode {
 
 
     /**
+     * 485 最大连续1的个数
+     * 思路：遍历，用一个变量保存连续1的个数即可
+     *
+     * @param nums 数组
+     * @return
+     */
+    public static int findMaxConsecutiveOnes(int[] nums) {
+        int maxCount = 0;
+        int count = 0;
+        boolean isOne = false;
+        // 边界确认
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
+        for (int num : nums) {
+            if (num == 1 ) {
+                count++;
+            } else {
+                maxCount = Math.max(count, maxCount);
+                count = 0;
+            }
+        }
+        maxCount = Math.max(count, maxCount);
+        return maxCount;
+    }
+
+    /**
      * 测试函数
      *
      * @param args
@@ -334,9 +363,12 @@ public class LeetCode {
         System.out.println(Arrays.toString(test283));*/
 
         //566
-        int[][] arr = {{1, 2}, {3, 4}};
+/*        int[][] arr = {{1, 2}, {3, 4}};
 
-        matrixReshape(arr, 1, 4);
+        matrixReshape(arr, 1, 4);*/
+
+        int[] arr = {1, 1, 0, 1, 1, 1};
+        System.out.println( findMaxConsecutiveOnes(arr));
     }
 
 }
