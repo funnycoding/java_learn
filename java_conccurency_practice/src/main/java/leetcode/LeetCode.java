@@ -1,10 +1,12 @@
 package leetcode;
 
+import chapter7.TrackingExecutor;
+import com.sun.org.apache.xml.internal.resolver.readers.TR9401CatalogReader;
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
-import sun.util.resources.cldr.uk.CurrencyNames_uk;
 
 /**
  * @author XuYanXin
@@ -313,7 +315,7 @@ public class LeetCode {
         }
 
         for (int num : nums) {
-            if (num == 1 ) {
+            if (num == 1) {
                 count++;
             } else {
                 maxCount = Math.max(count, maxCount);
@@ -322,6 +324,101 @@ public class LeetCode {
         }
         maxCount = Math.max(count, maxCount);
         return maxCount;
+    }
+
+    /**
+     * 2020-08-15 23:51:10
+     * LeetCode-Array-medium-240-搜索二维矩阵
+     * 给定一个二维矩阵，给定一个要搜索的值，返回该矩阵是否包含该值
+     *
+     * @param matrix 给定矩阵
+     * @param target 查找值
+     * @return 查找值是否在矩阵中存在
+     */
+    public static boolean searchMatrix(int[][] matrix, int target) {
+        // 边界确认
+        if (matrix == null || matrix.length == 0) {
+            return false;
+        }
+        // 1. 遍历数组比对target
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] == target) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 使用二分法查找矩阵中的元素
+     * @param matrix
+     * @param target
+     * @return
+     */
+    public  static boolean searchMatrixBinary(int[][] matrix, int target) {
+        // 边界确认
+        if (matrix == null || matrix.length == 0) {
+            return false;
+        }
+
+        // 遍历数组的对角线
+        int shortDim = Math.min(matrix.length, matrix[0].length); // 返回行和列更小的那个
+
+        for (int i = 0; i < shortDim; i++) {
+            // 竖排查找
+            boolean verticalFound = binarySearch(matrix, target, i, true);
+
+            // 横排查找
+            boolean horizontalFound = binarySearch(matrix, target, i, false);
+
+            if (verticalFound || horizontalFound) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * @param martrix 给定矩阵
+     * @param target 要查找的元素
+     * @param start 起始元素
+     * @param vertical 是竖直还是水平搜索
+     * @return 元素是否存在
+     */
+    private static boolean binarySearch(int[][] martrix, int target, int start, boolean vertical) {
+        int lo = start;
+        // 如果是竖直的，就获取竖直数组的最后一个元素，否则获取水平数组的最后一个元素
+        int hi = vertical ? martrix[0].length - 1 : martrix.length - 1;
+
+        while (hi >= lo) {
+            // 找到中间元素
+            int mid = (lo + hi) / 2;
+            // 针对列查找
+            if (vertical) {
+                // 如果中间元素比目标元素小，最低值向右移动一位
+                if (martrix[start][mid] < target) {
+                    lo = mid + 1;
+                    // 如果中间元素比目标值大，最高值向左移动1位
+                } else if (martrix[start][mid] > target) {
+                    hi = mid - 1;
+                } else {
+                    // 这是直接相等的情况了
+                    return true;
+                }
+            } else { // 查找的是 行
+                if (martrix[mid][start] < target) {
+                    lo = mid + 1;
+                } else if (martrix[mid][start] > target) {
+                    hi = mid - 1;
+                } else {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -366,9 +463,13 @@ public class LeetCode {
 /*        int[][] arr = {{1, 2}, {3, 4}};
 
         matrixReshape(arr, 1, 4);*/
+        // ----------------485----------------
+     /*   int[] arr = {1, 1, 0, 1, 1, 1};
+        System.out.println( findMaxConsecutiveOnes(arr));*/
+        // ----------------485----------------
 
-        int[] arr = {1, 1, 0, 1, 1, 1};
-        System.out.println( findMaxConsecutiveOnes(arr));
+        int[][] arr = {{1, 2}, {3, 4}};
+        System.out.println(searchMatrixBinary(arr, 5));
     }
 
 }
