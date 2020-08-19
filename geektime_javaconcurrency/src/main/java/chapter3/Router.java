@@ -1,4 +1,4 @@
-package chaoter3;
+package chapter3;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,9 +20,9 @@ import java.util.concurrent.atomic.AtomicLong;
 public class Router {
 
 
-    private final String ip;
-    private final Integer port;
-    private final String iface;
+    public final String ip;
+    public final Integer port;
+    public final String iface;
 
     public Router(String ip, Integer port, String iface) {
         this.ip = ip;
