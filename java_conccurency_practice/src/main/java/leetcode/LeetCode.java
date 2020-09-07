@@ -1,9 +1,6 @@
 package leetcode;
 
-import chapter7.TrackingExecutor;
-import com.sun.org.apache.xml.internal.resolver.readers.TR9401CatalogReader;
 import java.util.Arrays;
-import java.util.BitSet;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -353,11 +350,12 @@ public class LeetCode {
 
     /**
      * 使用二分法查找矩阵中的元素
+     *
      * @param matrix
      * @param target
      * @return
      */
-    public  static boolean searchMatrixBinary(int[][] matrix, int target) {
+    public static boolean searchMatrixBinary(int[][] matrix, int target) {
         // 边界确认
         if (matrix == null || matrix.length == 0) {
             return false;
@@ -421,6 +419,57 @@ public class LeetCode {
         return false;
     }
 
+
+    /**
+     * 378 有序矩阵中第 K 小的元素
+     *
+     * @param matrix 给定的 n x n 的矩阵，每行和每列的元素按顺序排序 找到矩阵中 第 k 小的元素
+     * 注意点： 这个 k 是排序后 第 k 小的元素，不是 第 k 个不同的元素（第一遍看的时候不太理解
+     * 示例：
+     * matrix = [
+     * [ 1,  5,  9],
+     * [10, 11, 13],
+     * [12, 13, 15]
+     * ],
+     * k = 8,
+     *
+     * 返回 13。
+     * 提示： 可以假设 k 的值永远是有效的 1 <= k <= n 的平方
+     *
+     * 下面先来个无脑暴力法(照着抄的）
+     * @param k 要找到第 k 小的元素
+     * @return
+     */
+    public static int kthSmallest(int[][] matrix, int k) {
+        // 定义n是为了定位最后一个元素
+        int n = matrix.length - 1;
+        // 定位到第一个元素和最后一个元素，因为矩阵是有序的，下面开始二分
+        int l = matrix[0][0], r = matrix[n][n];
+        while (l < r) {
+            int mid = l + (r - l) / 2; // 选定一个中间元素
+            int count = countNoMoreThanMid(matrix, mid, n);
+            if (count < k) {
+                l = mid + 1;
+            } else {
+                r = mid;
+            }
+        }
+        return r;
+    }
+
+    private static int countNoMoreThanMid(int[][] matrix, int mid, int n) {
+        int x = n, y = 0, count = 0;
+        while (x >= 0 && y <= n) {
+            if (matrix[x][y] <= mid) {
+                count += x + 1;
+                ++y;
+            } else {
+                --x;
+            }
+        }
+        return count;
+    }
+
     /**
      * 测试函数
      *
@@ -467,9 +516,12 @@ public class LeetCode {
      /*   int[] arr = {1, 1, 0, 1, 1, 1};
         System.out.println( findMaxConsecutiveOnes(arr));*/
         // ----------------485----------------
+/*        int[][] arr = {{1, 2}, {3, 4}};
+        System.out.println(searchMatrixBinary(arr, 5));*/
 
-        int[][] arr = {{1, 2}, {3, 4}};
-        System.out.println(searchMatrixBinary(arr, 5));
+        // 378
+        int[][] arr = {{1, 5,9}, {10, 11,13},{12,13,15}};
+        System.out.println(kthSmallest(arr, 8));
     }
 
 }
