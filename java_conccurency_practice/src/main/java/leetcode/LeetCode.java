@@ -2,6 +2,7 @@ package leetcode;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -433,6 +434,7 @@ public class LeetCode {
      * ],
      * k = 8,
      *
+     *
      * 返回 13。
      * 提示： 可以假设 k 的值永远是有效的 1 <= k <= n 的平方
      *
@@ -456,6 +458,55 @@ public class LeetCode {
         }
         return r;
     }
+
+    /**
+     * 287. 寻找重复数
+     * 中等难度
+     *
+     * 给定一个包含 n + 1 个整数的数组 nums，其数字都在 1 到 n 之间（包括 1 和 n）
+     * 可知至少存在一个重复的整数。假设只有一个重复的整数，找出这个重复的数。
+     *
+     * 示例： 输入 [1，3，4，2，2]
+     * 输出 2
+     *
+     * 输入 [3,1,3,4,2]
+     * 输出 3
+     *
+     * 说明：
+     *
+     * 不能更改原数组（假设数组是只读的）。
+     * 只能使用额外的 O(1) 的空间。
+     * 时间复杂度小于 O(n^2) 。
+     * 数组中只有一个重复的数字，但它可能不止重复出现一次。
+     *
+     * 思路：
+     * 遍历数组，并将元素存入 Set 并调用 contain 元素的操作，如果返回 true 则返回当前元素
+     *
+     * @param nums
+     * @return
+     */
+    public static int findDuplicate(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        // 创建一个 Set 来保存元素
+        HashSet<Integer> elements = new HashSet<>(nums.length);
+
+        for (int i = 0; i < nums.length; i++) {
+
+            if (i == 0) {
+                elements.add(nums[i]);
+                continue;
+            }
+            if (elements.contains(nums[i])) {
+                return nums[i];
+            } else {
+                elements.add(nums[i]);
+            }
+        }
+        return -1;
+    }
+
 
     private static int countNoMoreThanMid(int[][] matrix, int mid, int n) {
         int x = n, y = 0, count = 0;
@@ -520,8 +571,12 @@ public class LeetCode {
         System.out.println(searchMatrixBinary(arr, 5));*/
 
         // 378
-        int[][] arr = {{1, 5,9}, {10, 11,13},{12,13,15}};
-        System.out.println(kthSmallest(arr, 8));
+        //int[][] arr = {{1, 5, 9}, {10, 11, 13}, {12, 13, 15}};
+        //System.out.println(kthSmallest(arr, 8));
+
+        //int[] test287arr = {3,1,3,4,2};
+        int[] test287arr = {1, 2, 2};
+        System.out.println(findDuplicate(test287arr));
     }
 
 }
