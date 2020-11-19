@@ -34,7 +34,6 @@ public class Test {
             t2.join();
             t3.join();
         }
-
         System.out.println(a.getBalance());
         System.out.println(b.getBalance());
         System.out.println(c.getBalance());
