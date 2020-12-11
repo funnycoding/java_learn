@@ -18,18 +18,22 @@ import net.jcip.annotations.NotThreadSafe;
 //UnsafeCountingFactorizer.java
 @NotThreadSafe
 public class UnsafeCountingFactorizer extends GenericServlet implements Servlet {
-
     // 定义了一个变量计数器
     private long count = 0;
-
 
     @Override
     public void service(ServletRequest req, ServletResponse resp) {
         BigInteger i = extractFromRequest(req);
         BigInteger[] factors = factor(i);
         // 不安全的操作，并发时可能会产生问题
-        ++count;
+        //++count;
+        add100k();
         encodeIntoResponse(resp, factors);
+    }
+    public void add100k() {
+        for (int i = 0; i < 1_000_000; i++) {
+           ++count;
+        }
     }
 
     void encodeIntoResponse(ServletResponse res, BigInteger[] factors) {
@@ -42,5 +46,9 @@ public class UnsafeCountingFactorizer extends GenericServlet implements Servlet 
     BigInteger[] factor(BigInteger i) {
         // Doesn't really factor
         return new BigInteger[]{i};
+    }
+
+    public long getCount() {
+        return count;
     }
 }

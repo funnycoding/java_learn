@@ -16,8 +16,6 @@ import net.jcip.annotations.ThreadSafe;
 
 @ThreadSafe
 public class StatelessFactorizer extends GenericServlet implements Servlet {
-
-
     @Override
     public void service(ServletRequest req, ServletResponse resp) {
         BigInteger i = extractFromRequest(req);
@@ -25,8 +23,8 @@ public class StatelessFactorizer extends GenericServlet implements Servlet {
         encodeIntoResponse(resp, factors);
     }
 
-    private void encodeIntoResponse(ServletResponse resp, BigInteger[] factors) {
-
+    private int encodeIntoResponse(ServletResponse resp, BigInteger[] factors) {
+        return 8;
     }
 
     BigInteger extractFromRequest(ServletRequest req) {
@@ -36,6 +34,4 @@ public class StatelessFactorizer extends GenericServlet implements Servlet {
     BigInteger[] factor(BigInteger i) {
         return new BigInteger[]{i};
     }
-
-
 }
