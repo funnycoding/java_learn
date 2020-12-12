@@ -508,6 +508,50 @@ public class LeetCode {
     }
 
 
+    /**
+     * 667 优美的排列
+     * 核心：找规律，给你2个数 n 、 k
+     * k 是需要翻转的数组元素的个数 ， n 是数组的长度
+     */
+
+    class Solution {
+        public int[] constructArray(int n, int k) {
+            // 创建一个长度为 n 的数组
+            int[] res = new int[n];
+            for (int i = 0; i < n; i++) {
+                // 给元素赋值，此时 k = 1 ，即数组为等差数列，差值为1
+                res[i] = i + 1;
+            }
+
+            // 下面开始对数组进行翻转，也就是处理 k 这个参数
+            // 如果k = 1 直接返回当前数组即可
+            if (k == 1) {
+                return res;
+            }
+
+            // 下面是要翻转的次数，因为 k  的最小值为 1，所以这里的循环初始值为1
+            for (int m = 1; m < k; m++) {
+                // 这里单独写了一个翻转的方法
+                reverse(res, m, n - 1);
+            }
+            return res;
+        }
+
+        private void reverse(int[] res, int i, int j) {
+            // 因为题目要求， k < n
+            while (i < j) {
+                // 从第2个元素，索引为1处的元素开始反转
+                int t = res[i];
+                // 把最后一个元素，放到第2个元素的地方
+                res[i] = res[j];
+                res[j] = t;
+                i++;
+                j--;
+            }
+        }
+    }
+
+
     private static int countNoMoreThanMid(int[][] matrix, int mid, int n) {
         int x = n, y = 0, count = 0;
         while (x >= 0 && y <= n) {
