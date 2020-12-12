@@ -1,0 +1,2 @@
+JMH S 23 arrays.jmh.ParallelSort S 54 arrays.jmh.generated.ParallelSort_parallelSort_jmhTest S 12 parallelSort S 11 AverageTime E A 1 1 1 E E E E E E E E E E E E E E U 12 MICROSECONDS E E 
+JMH S 23 arrays.jmh.ParallelSort S 46 arrays.jmh.generated.ParallelSort_sort_jmhTest S 4 sort S 11 AverageTime E A 1 1 1 E E E E E E E E E E E E E E U 12 MICROSECONDS E E 
